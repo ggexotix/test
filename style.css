@@ -1,15 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Segoe UI', sans-serif;
     background: radial-gradient(circle at top, #1b2735, #090a0f);
     color: white;
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .container {
@@ -17,44 +14,22 @@ body {
     margin: 20px;
     padding: 40px 30px;
     border-radius: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(18px);
     box-shadow: 0 25px 60px rgba(0,0,0,0.7);
 }
 
-h1 {
-    color: #ffb6c1;
-    margin-bottom: 25px;
-    text-shadow: 0 0 18px rgba(255,182,193,0.6);
-}
-
-#countdown {
-    display: flex;
-    gap: 18px;
-    margin-bottom: 25px;
-}
-
+/* COUNTDOWN */
+#countdown { display: flex; gap: 18px; justify-content: center; }
 .time-box {
     background: rgba(255,255,255,0.12);
     padding: 18px;
     border-radius: 18px;
     width: 85px;
 }
+.time-box span { font-size: 30px; color: #ffd36a; }
 
-.time-box span {
-    font-size: 30px;
-    color: #ffd36a;
-}
-
-small {
-    font-size: 12px;
-}
-
+/* BUTTON */
 button {
     margin-top: 20px;
     padding: 14px 28px;
@@ -66,40 +41,50 @@ button {
     color: white;
 }
 
-.hidden {
-    display: none;
-}
-
-.slideshow {
-    margin-top: 30px;
-}
-
+/* SLIDESHOW */
+.slideshow { margin-top: 30px; }
 .slideshow img {
     width: 260px;
     height: 260px;
     object-fit: cover;
     border-radius: 22px;
     transition: opacity 0.6s ease;
-    box-shadow: 0 18px 45px rgba(255,105,180,0.5);
 }
 
-#caption {
-    margin-top: 12px;
+/* LETTER */
+.letter {
+    margin-top: 40px;
+    padding: 25px;
+    background: rgba(255,182,193,0.12);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(255,105,180,0.4);
+    max-width: 500px;
+    animation: fadeIn 2s ease forwards;
+}
+
+.letter h2 {
+    margin-bottom: 15px;
+    color: #ffb6c1;
+}
+
+.letter p {
+    line-height: 1.7;
     color: #ffe4ec;
 }
+
+/* HELPERS */
+.hidden { display: none; }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* HEARTS */
 .heart {
     position: fixed;
     bottom: -30px;
-    pointer-events: none;
     animation: rise linear;
+    pointer-events: none;
 }
-
-@keyframes rise {
-    to { transform: translateY(-120vh); }
-}
+@keyframes rise { to { transform: translateY(-120vh); } }

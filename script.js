@@ -1,44 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 🧪 TEST MODE: 10 seconds
+    // 🧪 TEST MODE (10 seconds)
     const birthday = Date.now() + 10000;
 
-    const countdownEl = document.getElementById("countdown");
-    const messageEl = document.getElementById("message");
-    const slideshowEl = document.querySelector(".slideshow");
+    const countdown = document.getElementById("countdown");
+    const message = document.getElementById("message");
+    const slideshow = document.querySelector(".slideshow");
+    const letterBtn = document.getElementById("letterBtn");
 
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById("minutes");
+    const seconds = document.getElementById("seconds");
 
     let started = false;
 
-    function updateCountdown() {
+    function update() {
         const diff = birthday - Date.now();
-
         if (diff <= 0) {
             if (started) return;
             started = true;
 
-            countdownEl.classList.add("hidden");
-            messageEl.classList.remove("hidden");
-            slideshowEl.classList.remove("hidden");
-
-            messageEl.style.animation = "fadeIn 2s ease forwards";
-            slideshowEl.style.animation = "fadeIn 2.5s ease forwards";
+            countdown.classList.add("hidden");
+            message.classList.remove("hidden");
+            slideshow.classList.remove("hidden");
+            letterBtn.classList.remove("hidden");
             return;
         }
 
-        daysEl.innerText = Math.floor(diff / (1000*60*60*24));
-        hoursEl.innerText = Math.floor((diff / (1000*60*60)) % 24);
-        minutesEl.innerText = Math.floor((diff / (1000*60)) % 60);
-        secondsEl.innerText = Math.floor((diff / 1000) % 60);
+        days.innerText = Math.floor(diff / (1000*60*60*24));
+        hours.innerText = Math.floor((diff / (1000*60*60)) % 24);
+        minutes.innerText = Math.floor((diff / (1000*60)) % 60);
+        seconds.innerText = Math.floor((diff / 1000) % 60);
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    update();
+    setInterval(update, 1000);
 
+    // SLIDESHOW
     const photos = [
         { src: "photos/photo1.jpeg", text: "Memory 1 ❤️" },
         { src: "photos/photo2.jpeg", text: "Memory 2 💕" },
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => {
         if (!started) return;
         img.style.opacity = 0;
-
         setTimeout(() => {
             i = (i + 1) % photos.length;
             img.src = photos[i].src;
@@ -67,26 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
 });
 
-function playMusic() {
-    const music = document.getElementById("music");
-    const btn = document.querySelector("button");
-
-    if (music.paused) {
-        music.volume = 0;
-        music.play();
-        btn.innerText = "⏸ Pause Music";
-        let v = 0;
-        const f = setInterval(() => {
-            v += 0.05;
-            music.volume = v;
-            if (v >= 0.7) clearInterval(f);
-        }, 200);
-    } else {
-        music.pause();
-        btn.innerText = "🎶 Play Our Song";
-    }
+/* LETTER */
+function openLetter() {
+    document.getElementById("letter").classList.remove("hidden");
+    document.getElementById("letterBtn").classList.add("hidden");
 }
 
+/* MUSIC */
+function playMusic() {
+    const m = document.getElementById("music");
+    m.paused ? m.play() : m.pause();
+}
+
+/* HEARTS */
 setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";

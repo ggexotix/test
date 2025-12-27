@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ===== BIRTHDAY COUNTDOWN =====
-    const birthday = new Date("2025-12-25T00:00:00").getTime();
+    // 🧪 TEST MODE: 10 seconds
+    const birthday = Date.now() + 10000;
 
     const countdownEl = document.getElementById("countdown");
     const messageEl = document.getElementById("message");
@@ -12,80 +12,88 @@ document.addEventListener("DOMContentLoaded", () => {
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
 
-    let slideshowStarted = false;
+    let started = false;
 
     function updateCountdown() {
-        const now = Date.now();
-        const diff = birthday - now;
+        const diff = birthday - Date.now();
 
         if (diff <= 0) {
+            if (started) return;
+            started = true;
+
             countdownEl.classList.add("hidden");
             messageEl.classList.remove("hidden");
             slideshowEl.classList.remove("hidden");
-            slideshowStarted = true;
+
+            messageEl.style.animation = "fadeIn 2s ease forwards";
+            slideshowEl.style.animation = "fadeIn 2.5s ease forwards";
             return;
         }
 
-        daysEl.innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-        hoursEl.innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        minutesEl.innerText = Math.floor((diff / (1000 * 60)) % 60);
+        daysEl.innerText = Math.floor(diff / (1000*60*60*24));
+        hoursEl.innerText = Math.floor((diff / (1000*60*60)) % 24);
+        minutesEl.innerText = Math.floor((diff / (1000*60)) % 60);
         secondsEl.innerText = Math.floor((diff / 1000) % 60);
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ===== PHOTO SLIDESHOW =====
     const photos = [
-        { src: "photos/photo1.jpeg", text: "Our first beautiful memory ❤️" },
-        { src: "photos/photo2.jpeg", text: "Every moment with you is special 💕" },
-        { src: "photos/photo3.jpeg", text: "Forever us 💖" },
-        { src: "photos/photo4.jpeg", text: "You are my everything 💖" },
-        { src: "photos/photo5.jpg", text: "Our first beautiful memory ❤️" },
-        { src: "photos/photo6.jpeg", text: "You and me forever 💕" },
-        { src: "photos/photo7.jpeg", text: "Making memories with you 💖" },
-        { src: "photos/photo8.jpeg", text: "My heart belongs to you 💞" }
+        { src: "photos/photo1.jpeg", text: "Memory 1 ❤️" },
+        { src: "photos/photo2.jpeg", text: "Memory 2 💕" },
+        { src: "photos/photo3.jpeg", text: "Memory 3 💖" },
+        { src: "photos/photo4.jpeg", text: "Memory 4 💞" },
+        { src: "photos/photo5.jpeg", text: "Memory 5 ❤️" },
+        { src: "photos/photo6.jpeg", text: "Memory 6 💕" },
+        { src: "photos/photo7.jpeg", text: "Memory 7 💖" },
+        { src: "photos/photo8.jpeg", text: "Memory 8 💞" }
     ];
 
-    let photoIndex = 0;
-    const slideImage = document.getElementById("slideImage");
-    const caption = document.getElementById("caption");
+    let i = 0;
+    const img = document.getElementById("slideImage");
+    const cap = document.getElementById("caption");
 
     setInterval(() => {
-        if (!slideshowStarted) return;
-        photoIndex = (photoIndex + 1) % photos.length;
-        slideImage.src = photos[photoIndex].src;
-        caption.innerText = photos[photoIndex].text;
-    }, 4000);
+        if (!started) return;
+        img.style.opacity = 0;
 
+        setTimeout(() => {
+            i = (i + 1) % photos.length;
+            img.src = photos[i].src;
+            cap.innerText = photos[i].text;
+            img.style.opacity = 1;
+        }, 600);
+    }, 4000);
 });
 
-// ===== MUSIC CONTROL =====
 function playMusic() {
     const music = document.getElementById("music");
     const btn = document.querySelector("button");
 
-    music.volume = 0.7;
-
     if (music.paused) {
+        music.volume = 0;
         music.play();
         btn.innerText = "⏸ Pause Music";
+        let v = 0;
+        const f = setInterval(() => {
+            v += 0.05;
+            music.volume = v;
+            if (v >= 0.7) clearInterval(f);
+        }, 200);
     } else {
         music.pause();
-        btn.innerText = "▶️ Play Music";
+        btn.innerText = "🎶 Play Our Song";
     }
 }
 
-// ===== FLOATING HEARTS EFFECT =====
 setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = ["💖","💕","💗","💓","💞"][Math.floor(Math.random() * 5)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}, 300);
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = ["💖","💕","💗","💞"][Math.floor(Math.random()*4)];
+    h.style.left = Math.random()*100 + "vw";
+    h.style.fontSize = (18 + Math.random()*20) + "px";
+    h.style.animationDuration = (6 + Math.random()*4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 9000);
+}, 500);

@@ -7,6 +7,7 @@ body {
     color: white;
     text-align: center;
     overflow-x: hidden;
+    overflow-y: auto;   /* ✅ allow vertical scroll */
 }
 
 .container {
@@ -14,9 +15,10 @@ body {
     margin: 20px;
     padding: 40px 30px;
     border-radius: 28px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* keep center horizontally */
 }
 
 /* COUNTDOWN */
@@ -88,3 +90,4 @@ button {
     pointer-events: none;
 }
 @keyframes rise { to { transform: translateY(-120vh); } }
+

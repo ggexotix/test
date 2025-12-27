@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Birthday Countdown 💖</title>
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="hearts"></div>
-
 <div class="container">
+
     <h1>💖 MERA CUTIEE BACHAAA 💖</h1>
 
+    <!-- COUNTDOWN -->
     <div id="countdown">
         <div class="time-box"><span id="days">0</span><small>Days</small></div>
         <div class="time-box"><span id="hours">0</span><small>Hours</small></div>
@@ -21,26 +20,29 @@
         <div class="time-box"><span id="seconds">0</span><small>Seconds</small></div>
     </div>
 
+    <!-- MUSIC BUTTON -->
+    <button onclick="playMusic()">🎶 Play Our Song</button>
+
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music/belongs-together.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MESSAGE -->
     <div id="message" class="hidden">
         <h2>🎂🎉 HAPPY BIRTHDAY MY LOVE 🎉🎂</h2>
         <p>
-            You're the reason of my happiness,<br>
-            my cutiepiee,<br>
-            my kajukatliii ❤️<br><br>
-            I LOVE YOU FOREVER AND EVER AND EVER 💞
+            You're the reason of my happiness ❤️<br><br>
+            I LOVE YOU FOREVER 💞
         </p>
     </div>
 
+    <!-- SLIDESHOW -->
     <div class="slideshow hidden">
-        <img id="slideImage" src="photos/photo1.jpeg" alt="Our Memories">
+        <img id="slideImage" src="photos/photo1.jpeg">
         <div id="caption">Our first beautiful memory ❤️</div>
     </div>
 
-    <button onclick="playMusic()">▶️ Play Music</button>
-
-    <audio id="music" loop>
-        <source src="BelongsTogether.mp3.mp3" type="audio/mpeg">
-    </audio>
 </div>
 
 <script src="script.js"></script>

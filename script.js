@@ -67,8 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* LETTER */
 function openLetter() {
-    document.getElementById("letter").classList.remove("hidden");
-    document.getElementById("letterBtn").classList.add("hidden");
+    const letter = document.getElementById("letter");
+    const btn = document.getElementById("letterBtn");
+
+    letter.classList.remove("hidden");
+    btn.classList.add("hidden");
+
+    // auto scroll to letter
+    setTimeout(() => {
+        letter.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
 }
 
 /* MUSIC */
@@ -88,3 +96,4 @@ setInterval(() => {
     document.body.appendChild(h);
     setTimeout(() => h.remove(), 9000);
 }, 500);
+

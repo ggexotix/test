@@ -20,10 +20,8 @@
         <div class="time-box"><span id="seconds">0</span><small>Seconds</small></div>
     </div>
 
-    <!-- MUSIC BUTTON -->
-    <button onclick="playMusic()">🎶 Play Our Song</button>
-
     <!-- MUSIC -->
+    <button onclick="playMusic()">🎶 Play Our Song</button>
     <audio id="music" loop>
         <source src="music/belongs-together.mp3" type="audio/mpeg">
     </audio>
@@ -31,16 +29,32 @@
     <!-- MESSAGE -->
     <div id="message" class="hidden">
         <h2>🎂🎉 HAPPY BIRTHDAY MY LOVE 🎉🎂</h2>
-        <p>
-            You're the reason of my happiness ❤️<br><br>
-            I LOVE YOU FOREVER 💞
-        </p>
+        <p>You are my happiness, my forever ❤️</p>
     </div>
 
     <!-- SLIDESHOW -->
     <div class="slideshow hidden">
         <img id="slideImage" src="photos/photo1.jpeg">
         <div id="caption">Our first beautiful memory ❤️</div>
+    </div>
+
+    <!-- LETTER BUTTON -->
+    <button id="letterBtn" class="hidden" onclick="openLetter()">💌 Open My Letter</button>
+
+    <!-- LETTER -->
+    <div id="letter" class="letter hidden">
+        <h2>💖 My Love Letter 💖</h2>
+        <p>
+            My love,<br><br>
+            From the moment you came into my life, everything changed.
+            Your smile heals me, your voice comforts me, and your love
+            completes me.<br><br>
+
+            I promise to stand by you, love you endlessly, and choose you
+            every single day. You are my today, my tomorrow, and my forever. ❤️<br><br>
+
+            Happy Birthday, my cutiee bachaaa 💞
+        </p>
     </div>
 
 </div>

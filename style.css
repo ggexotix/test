@@ -1,5 +1,9 @@
 /* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -7,9 +11,10 @@ body {
     color: white;
     text-align: center;
     overflow-x: hidden;
-    overflow-y: auto;   /* ✅ allow vertical scroll */
+    overflow-y: auto;
 }
 
+/* CONTAINER */
 .container {
     min-height: 100vh;
     margin: 20px;
@@ -18,20 +23,41 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: center;   /* keep center horizontally */
+    align-items: center;
+}
+
+/* TITLE */
+h1 {
+    margin-bottom: 25px;
 }
 
 /* COUNTDOWN */
-#countdown { display: flex; gap: 18px; justify-content: center; }
+#countdown {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .time-box {
     background: rgba(255,255,255,0.12);
     padding: 18px;
     border-radius: 18px;
     width: 85px;
 }
-.time-box span { font-size: 30px; color: #ffd36a; }
 
-/* BUTTON */
+.time-box span {
+    font-size: 30px;
+    color: #ffd36a;
+}
+
+.time-box small {
+    display: block;
+    margin-top: 4px;
+    opacity: 0.85;
+}
+
+/* BUTTONS */
 button {
     margin-top: 20px;
     padding: 14px 28px;
@@ -41,16 +67,45 @@ button {
     font-size: 16px;
     background: linear-gradient(135deg,#ff6b81,#ff4757);
     color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* SLIDESHOW */
-.slideshow { margin-top: 30px; }
-.slideshow img {
-    width: 260px;
-    height: 260px;
-    object-fit: cover;
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 99, 132, 0.5);
+}
+
+/* MESSAGE */
+#message {
+    margin-top: 25px;
+}
+
+/* SLIDESHOW (🔥 PERFECT SQUARE FIX 🔥) */
+.slideshow {
+    margin-top: 30px;
+    width: 280px;
+    aspect-ratio: 1 / 1;   /* ALWAYS SQUARE */
     border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: opacity 0.6s ease;
+}
+
+/* CAPTION */
+#caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
 }
 
 /* LETTER */
@@ -61,7 +116,7 @@ button {
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(255,105,180,0.4);
     max-width: 500px;
-    animation: fadeIn 2s ease forwards;
+    animation: fadeIn 1.8s ease forwards;
 }
 
 .letter h2 {
@@ -75,19 +130,48 @@ button {
 }
 
 /* HELPERS */
-.hidden { display: none; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.hidden {
+    display: none;
 }
 
-/* HEARTS */
+/* FADE ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FLOATING HEARTS */
 .heart {
     position: fixed;
     bottom: -30px;
     animation: rise linear;
     pointer-events: none;
 }
-@keyframes rise { to { transform: translateY(-120vh); } }
 
+@keyframes rise {
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 480px) {
+    .slideshow {
+        width: 240px;
+    }
+
+    .time-box {
+        width: 75px;
+        padding: 14px;
+    }
+
+    .time-box span {
+        font-size: 26px;
+    }
+}

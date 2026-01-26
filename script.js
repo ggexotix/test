@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 🧪 TEST MODE (10 seconds)
+    /* 🎂 TEST MODE (10 seconds) */
     const birthday = Date.now() + 10000;
 
     const countdown = document.getElementById("countdown");
@@ -13,10 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const minutes = document.getElementById("minutes");
     const seconds = document.getElementById("seconds");
 
+    const music = document.getElementById("music");
+    const musicBtn = document.getElementById("musicBtn");
+
     let started = false;
 
-    function update() {
+    /* ⏱ COUNTDOWN */
+    function updateCountdown() {
         const diff = birthday - Date.now();
+
         if (diff <= 0) {
             if (started) return;
             started = true;
@@ -25,19 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
             message.classList.remove("hidden");
             slideshow.classList.remove("hidden");
             letterBtn.classList.remove("hidden");
+
             return;
         }
 
-        days.innerText = Math.floor(diff / (1000*60*60*24));
-        hours.innerText = Math.floor((diff / (1000*60*60)) % 24);
-        minutes.innerText = Math.floor((diff / (1000*60)) % 60);
+        days.innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours.innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        minutes.innerText = Math.floor((diff / (1000 * 60)) % 60);
         seconds.innerText = Math.floor((diff / 1000) % 60);
     }
 
-    update();
-    setInterval(update, 1000);
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    // SLIDESHOW
+    /* 📸 SLIDESHOW */
     const photos = [
         { src: "photos/photo1.jpeg", text: "Memory 1 ❤️" },
         { src: "photos/photo2.jpeg", text: "Memory 2 💕" },
@@ -49,23 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "photos/photo8.jpeg", text: "Memory 8 💞" }
     ];
 
-    let i = 0;
+    let index = 0;
     const img = document.getElementById("slideImage");
     const cap = document.getElementById("caption");
 
     setInterval(() => {
         if (!started) return;
+
         img.style.opacity = 0;
+
         setTimeout(() => {
-            i = (i + 1) % photos.length;
-            img.src = photos[i].src;
-            cap.innerText = photos[i].text;
+            index = (index + 1) % photos.length;
+            img.src = photos[index].src;
+            cap.innerText = photos[index].text;
             img.style.opacity = 1;
         }, 600);
+
     }, 4000);
 });
 
-/* LETTER */
+/* 💌 LETTER */
 function openLetter() {
     const letter = document.getElementById("letter");
     const btn = document.getElementById("letterBtn");
@@ -73,27 +82,42 @@ function openLetter() {
     letter.classList.remove("hidden");
     btn.classList.add("hidden");
 
-    // auto scroll to letter
     setTimeout(() => {
         letter.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
 }
 
-/* MUSIC */
+/* 🎶 MUSIC (FIXED & SAFE) */
 function playMusic() {
-    const m = document.getElementById("music");
-    m.paused ? m.play() : m.pause();
+    const music = document.getElementById("music");
+    const btn = document.getElementById("musicBtn");
+
+    if (music.paused) {
+        music.play()
+            .then(() => {
+                btn.innerText = "💖 Pause Song";
+            })
+            .catch(err => {
+                console.log("Music play blocked:", err);
+            });
+    } else {
+        music.pause();
+        btn.innerText = "🎶 Play Our Song";
+    }
 }
 
-/* HEARTS */
+/* 💖 FLOATING HEARTS */
 setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerText = ["💖","💕","💗","💞"][Math.floor(Math.random()*4)];
-    h.style.left = Math.random()*100 + "vw";
-    h.style.fontSize = (18 + Math.random()*20) + "px";
-    h.style.animationDuration = (6 + Math.random()*4) + "s";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 9000);
-}, 500);
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = ["💖","💕","💗","💞"][Math.floor(Math.random() * 4)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (6 + Math.random() * 4) + "s";
 
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}, 500);

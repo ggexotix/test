@@ -14,15 +14,29 @@
 
     <!-- COUNTDOWN -->
     <div id="countdown">
-        <div class="time-box"><span id="days">0</span><small>Days</small></div>
-        <div class="time-box"><span id="hours">0</span><small>Hours</small></div>
-        <div class="time-box"><span id="minutes">0</span><small>Minutes</small></div>
-        <div class="time-box"><span id="seconds">0</span><small>Seconds</small></div>
+        <div class="time-box">
+            <span id="days">0</span>
+            <small>Days</small>
+        </div>
+        <div class="time-box">
+            <span id="hours">0</span>
+            <small>Hours</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes">0</span>
+            <small>Minutes</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds">0</span>
+            <small>Seconds</small>
+        </div>
     </div>
 
-    <!-- MUSIC -->
-    <button onclick="playMusic()">🎶 Play Our Song</button>
-    <audio id="music" loop>
+    <!-- MUSIC BUTTON -->
+    <button onclick="playMusic()" id="musicBtn">🎶 Play Our Song</button>
+
+    <!-- MUSIC (FIXED) -->
+    <audio id="music" loop preload="auto">
         <source src="music/belongs-together.mp3" type="audio/mpeg">
     </audio>
 
@@ -34,12 +48,14 @@
 
     <!-- SLIDESHOW -->
     <div class="slideshow hidden">
-        <img id="slideImage" src="photos/photo1.jpeg">
+        <img id="slideImage" src="photos/photo1.jpeg" alt="Memory">
         <div id="caption">Our first beautiful memory ❤️</div>
     </div>
 
     <!-- LETTER BUTTON -->
-    <button id="letterBtn" class="hidden" onclick="openLetter()">💌 Open My Letter</button>
+    <button id="letterBtn" class="hidden" onclick="openLetter()">
+        💌 Open My Letter
+    </button>
 
     <!-- LETTER -->
     <div id="letter" class="letter hidden">

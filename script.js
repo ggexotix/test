@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* 🎂 TEST MODE (10 seconds) */
-    const birthday = Date.now() + 10000;
+    /* 🎂 BIRTHDAY (27 FEB 2026, 12:00 AM IST) */
+    const birthday = new Date("2026-02-27T00:00+05:30").getTime();
 
     const countdown = document.getElementById("countdown");
     const message = document.getElementById("message");
@@ -121,3 +121,4 @@ setInterval(() => {
         heart.remove();
     }, 9000);
 }, 500);
+

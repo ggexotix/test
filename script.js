@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "photos/photo5.jpeg", text: "Memory 5 ❤️" },
         { src: "photos/photo6.jpeg", text: "Memory 6 💕" },
         { src: "photos/photo7.jpeg", text: "Memory 7 💖" },
-        { src: "photos/photo8.jpeg", text: "Memory 8 💞" }
+        { src: "photos/photo8.jpeg", text: "Memory 8 💞" },
+        { src: "photos/photo9.jpeg", text: "Memory 9 ❤️" },
+        { src: "photos/photo10.jpeg", text: "Memory 10 💕" }
     ];
 
     let index = 0;
@@ -121,4 +123,5 @@ setInterval(() => {
         heart.remove();
     }, 9000);
 }, 500);
+
 
